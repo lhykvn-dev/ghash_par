@@ -1,5 +1,5 @@
 # Bit-parallel, Block-parallel GHASH for AES-GCM
-Authentication is a potential performance bottleneck for AES-GCM due to the sequential structure between GHASH blocks, and the GF2 multiplication in each block. This repository introduces 2 hardware parallelism methods to speed up the generation of the authentication tag.While both methods are independent, implementing both together yields a fully parallelized design of only bitwise XOR-AND operations.
+Authentication is a potential performance bottleneck for AES-GCM due to the sequential structure between GHASH blocks, and the GF2 multiplication in each block. Two hardware parallelism methods to speed up the generation of the authentication tag are proposed. While both methods are independent, implementing both together yields a fully parallelized design of only bitwise XOR-AND operations.
 
 ## Block Parallelism
 Block parallelism breaks the GHASH sequential dependency by distributing the GF2 multiplcation across GHASH blocks, giving rise to the equation:
@@ -13,7 +13,7 @@ Each `Xi.H^k` term can be computed in parallel, and the final result is the XOR 
 Furthermore, powers of the hashkey H can be precomputed.
 
 ## Bit Parallelism
-GF2 multiplcation can be implemented as a series of parallelizable shift-xors, followed by modulo reduction. The formulation of this bit parallel method takes the iterative long division modulo reduction, and reduces it to a set of bitwise operations. Due to the sparcity and asymetry of the irreducible polynomial, the bitwise parallel method is also resource efficient. More details in `src/gf2_mult/README.md`
+GF2 multiplcation can be implemented as a series of parallelizable shift-xors, followed by modulo reduction. The formulation of the proposed bit parallel reduction method takes the iterative long division modulo reduction, and reduces it to a set of bitwise operations. Due to the sparcity and asymetry of the irreducible polynomial, the bitwise parallel method is also resource efficient. More details in `src/gf2_mult/README.md`
 
 ## Python
 Dependency: uv
