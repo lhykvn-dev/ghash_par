@@ -84,6 +84,7 @@ for g in gf2mult_table:
 
 # For each output bit, the same input bit can be used in multiple terms
 print('total_terms (w/o combining)= {}'.format(total_terms))
+print('LUTs= {}'.format(ceil(2*total_terms/6)))
 print('max output_fan_in= {}'.format(2*max_terms))
 print('max LUT chain= {}'.format(ceil(log(2*max_terms, 6))))
 print('max input_fan_out= {}'.format(max(input_fan_out)))

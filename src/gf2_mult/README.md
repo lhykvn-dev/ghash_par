@@ -62,6 +62,15 @@ max input_fan_out= 528
 ```
 Following the formulation, for a irreducible polynomial R, the distance between the 2 largest monomials, and the number of monomials both contribute to the overall number of XOR terms. The number of XOR terms increase directly as the weight increases. A large distance results in less folding of intermediate output terms. Since R is sparse and asymetric with monomials concentrated at lower degree coefficients, the overall number of XOR terms for the reduction table is small.
 
-While the reduction table alone is relatively efficient, a fully parallelizable GF2Mult table is large due to the resource heavy product table.
+While the reduction table alone is relatively small, a fully parallelizable GF2Mult table is larger due to the resource heavy product table.
 
-If implemented using LUT6 primitives, the max levels of logic is `log6(1008) = 4`, making it feasible for Ultrascale+ devices.
+The AND-XOR operations can be packed efficiently with LUT trees. Using LUT6, the min levels of logic is `log6(1008) = 4`, making it feasible for Ultrascale+ devices. The following FPGA synthesis results verify the analysis.
+
+## FPGA Synthesis Results
+`gen_verilog.py` generates the Systemverilog code for the bit parallel GF2 Multiplier.
+The design is synthesized on Vivado 2025.2 at 450 MHz for `xcku5p-ffvb676-2-e` Kintex Ultrascale+ FPGA.
+Post synthesis utilization and timing reports are in `sv/synth_reports`.
+- Clock frequency: 450 MHz
+- CLB LUT Utilization: 7362 (3.39%)
+- WNS: +0.848 ns
+- Logic levels: 5

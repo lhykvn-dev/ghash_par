@@ -1,5 +1,5 @@
 # Bit-parallel, Block-parallel GHASH for AES-GCM
-Authentication is a potential performance bottleneck for AES-GCM due to the sequential structure between GHASH blocks, and the GF2 multiplication in each block. Two hardware parallelism methods to speed up the generation of the authentication tag are proposed. While both methods are independent, implementing both together yields a fully parallelized design of only bitwise XOR-AND operations.
+Authentication is a potential performance bottleneck for AES-GCM due to the sequential structure between GHASH blocks, and the GF2 multiplication in each block. Two hardware parallelism methods to speed up the generation of the authentication tag are proposed. While both methods are independent, implementing both together yields a fully parallelized design of XOR-AND operations.
 
 ## Block Parallelism
 Block parallelism breaks the GHASH sequential dependency by distributing the GF2 multiplcation across GHASH blocks, giving rise to the equation:
@@ -24,8 +24,12 @@ uv run python src/run_block_parallel.py
 # Comparison between long division, russian peasant and bit parallel GF2 reduction
 uv run python src/run_bit_parallel.py
 
-# Bit-parallel table analysis
+# Bit-parallel GF2 Multiplication hardware analysis
 uv run python src/table_analysis.py
+
+# Bit-parallel GF2 Multiplication systemverilog code generation
+# Synthesis reports of the generated design are in `src/sv/synth_reports`
+uv run python src/gen_sv.py
 
 # Random vector tests
 uv run python src/run_bit_parallel_rand_vectors.py
@@ -45,6 +49,3 @@ uv run python src/run_block_parallel_rand_vectors.py
 - AES-GCM spec: https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-38d.pdf
 - GCM validation: https://csrc.nist.gov/projects/cryptographic-algorithm-validation-program/cavp-testing-block-cipher-modes#GCMVS
 - AES-GCM block diagram: https://upload.wikimedia.org/wikipedia/commons/2/25/GCM-Galois_Counter_Mode_with_IV.svg
-
-## TODOs
-- Add hardware implementation
