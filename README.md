@@ -39,6 +39,7 @@ uv run python src/run_block_parallel_rand_vectors.py
 ```
 ### RTL
 Dependency: Vivado 2025.2
+
 Bit-parallel GF2 Multiplication Systemverilog code generation.
 ```
 uv run python src/gen_sv.py
@@ -47,11 +48,11 @@ Run Vivado Synthesis
 ```
 vivado -mode batch -source run_synth.tcl
 ```
-Synthesis reports of the generated design are in `synth_out`
+Synthesis reports generated design in `synth_out`
 
 ## Use Cases
 - NSE replacing the MD5 with AES-GCM authentication tag: https://nsearchives.nseindia.com/web/sites/default/files/inline-files/TP_CUR_Trimmed_NNF_PROTOCOL_6.1.pdf
-    - Tag is inserted at the payload header, instead of appending after the payload, resulting in a potential latency bottleneck on the critical path.
+    - Tag is inserted at the payload header, instead of appending after the payload, resulting in a potential latency bottleneck as the tag is calculated over the entire payload first.
     - Further optimizations
         - Consider static blocks as blocks that consist of only static order fields, and dynamic blocks as blocks that contain dynamic order fields.
         - Static Blocks: `Xi.H^k` terms are precomputed and XOR'ed together with AAD and J0 blocks to generate a partial tag

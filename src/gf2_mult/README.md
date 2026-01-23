@@ -69,7 +69,6 @@ The AND-XOR operations can be packed efficiently with LUT trees. Using LUT6, 3 X
 ## FPGA Synthesis Results
 `gen_verilog.py` generates the Systemverilog code for the bit parallel GF2 Multiplier.
 The design is synthesized on Vivado 2025.2 at 450 MHz for `xcku5p-ffvb676-2-e` Kintex Ultrascale+ FPGA.
-Post synthesis utilization and timing reports are in `sv/synth_reports`.
 - Clock frequency: 450 MHz
 - CLB LUT Utilization: 7362 (3.39%)
 - WNS: +0.848 ns
