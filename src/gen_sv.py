@@ -1,6 +1,7 @@
-from sv.gen_codeblock import gen_codeblock
+from hw.gen_codeblock import gen_codeblock
+import os
 
-fn = 'and_xor.sv'
+fn = os.path.join(os.path.dirname(__file__), 'hw', 'and_xor.sv')
 
 start_block = '''
 `timescale 1ns / 1ps

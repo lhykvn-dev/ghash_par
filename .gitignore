@@ -9,4 +9,11 @@ wheels/
 # Virtual environments
 .venv
 
+# Generated files
 and_xor.sv
+synth_out/
+
+# Vivado artifacts
+dfx_runtime.txt
+*.jou
+*.log

@@ -8,7 +8,7 @@ Irreducible polynomial, R = x^128 + x^7 + x^2 + x + 1
 ```
 
 ## Formulation
-Following the long division method, consider that the significant bits of `I` will effect subsequent bits by the polynomial `R`.
+Consider the long division method, that significant bits of `I` will effect subsequent bits by the polynomial `R`.
 ```
 I[255]: O[134], O[129], O[128], O[127]
 ```
@@ -64,7 +64,7 @@ Following the formulation, for a irreducible polynomial R, the distance between 
 
 While the reduction table alone is relatively small, a fully parallelizable GF2Mult table is larger due to the resource heavy product table.
 
-The AND-XOR operations can be packed efficiently with LUT trees. Using LUT6, the min levels of logic is `log6(1008) = 4`, making it feasible for Ultrascale+ devices. The following FPGA synthesis results verify the analysis.
+The AND-XOR operations can be packed efficiently with LUT trees. Using LUT6, 3 XOR terms `x1^y1 + x2^y2 + x3^y3` can be packed into a single LUT, and the min levels of logic for the tree is `log6(1008) = 4`, making it feasible for Ultrascale+ devices. The following FPGA synthesis results verify the analysis.
 
 ## FPGA Synthesis Results
 `gen_verilog.py` generates the Systemverilog code for the bit parallel GF2 Multiplier.
