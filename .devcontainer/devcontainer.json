@@ -3,6 +3,18 @@
   "dockerComposeFile": "docker-compose.yml",
   "service": "app",
   "workspaceFolder": "/workspaces/dev",
+    "customizations": {
+    "vscode": {
+      "extensions": [
+        // Python
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "charliermarsh.ruff",
+        // Docker
+        "ms-azuretools.vscode-docker"
+      ]
+    }
+  },
   "features": {
     "ghcr.io/devcontainers/features/common-utils:2": {
       "username": "vscode",

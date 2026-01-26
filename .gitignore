@@ -13,9 +13,11 @@ wheels/
 and_xor.sv
 synth_out/
 verilator/
+src/hw/cocotb/sim_build/
+src/hw/cocotb/results.xml
+tb_output/
 
 # Vivado artifacts
 dfx_runtime.txt
 *.jou
 *.log
-cocotb/
