@@ -17,8 +17,8 @@ Furthermore, powers of the hashkey H can be precomputed.
 ## Bit Parallelism
 GF2 multiplcation can be implemented as a series of parallelizable shift-xors, followed by modulo reduction. The formulation of the proposed bit parallel reduction method takes the iterative long division modulo reduction, and reduces it to a set of bitwise operations. Due to the sparcity and asymetry of the irreducible polynomial, the bitwise parallel method is also resource efficient. More details in `src/gf2_mult/README.md`
 
-## Python Code
-Dependency: Python, uv
+## Python Model
+Dependency: Python, uv, cryptography
 
 Comparison between reference cryptography python library, sequential and block parallel GHASH
 ```
@@ -38,17 +38,26 @@ uv run python src/run_bit_parallel_rand_vectors.py
 uv run python src/run_block_parallel_rand_vectors.py
 ```
 ### RTL
-Dependency: Vivado 2025.2
+Dependencies: Vivado 2025.2, cocotb, Icarus
 
 Bit-parallel GF2 Multiplication Systemverilog code generation.
 ```
 uv run python src/gen_sv.py
 ```
-Run Vivado Synthesis
+Vivado testbench simulation
+```
+vivado -mode batch -source run_tb.tcl
+```
+Random vector cocotb Simulation, checking against Python model
+```
+cd src/hw/cocotb
+uv run make
+```
+Run Vivado Synthesis. Synthesis reports generated design in `synth_out`.
 ```
 vivado -mode batch -source run_synth.tcl
 ```
-Synthesis reports generated design in `synth_out`
+
 
 ## Use Cases
 - NSE replacing the MD5 with AES-GCM authentication tag: https://nsearchives.nseindia.com/web/sites/default/files/inline-files/TP_CUR_Trimmed_NNF_PROTOCOL_6.1.pdf

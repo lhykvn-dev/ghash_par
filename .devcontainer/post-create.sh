@@ -13,21 +13,25 @@ git config user.email
 uv venv --python 3.12
 uv sync
 
+# Note cocotb supports Icarus 11.0+.
+sudo apt install iverilog
+iverilog -v
+
 # Note cocotb supports Verilator 5.036+
 # sudo apt update
 # sudo apt-get install verilator
 # verilator --version
 
-# Build from repo
-sudo apt update
-sudo apt-get install git help2man perl python3 make autoconf g++ flex bison ccache
-sudo apt-get install libgoogle-perftools-dev numactl perl-doc
-git clone https://github.com/verilator/verilator
-unset VERILATOR_ROOT
-cd verilator
-git checkout stable
-autoconf
-./configure
-make -j `nproc`
-sudo make install
-verilator --version
+# # Install Verilator from source
+# sudo apt update
+# sudo apt-get install git help2man perl python3 make autoconf g++ flex bison ccache
+# sudo apt-get install libgoogle-perftools-dev numactl perl-doc
+# git clone https://github.com/verilator/verilator
+# unset VERILATOR_ROOT
+# cd verilator
+# git checkout stable
+# autoconf
+# ./configure
+# make -j `nproc`
+# sudo make install
+# verilator --version
