@@ -1,0 +1,18 @@
+version: "3.8"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    volumes:
+      - ..:/workspaces/dev:cached
+      - ${USERPROFILE}/.gitconfig:/home/vscode/.gitconfig:ro
+
+    environment:
+      PYTHONUNBUFFERED: "1"
+
+    command: sleep infinity
+
+    user: vscode

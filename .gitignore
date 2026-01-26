@@ -12,8 +12,10 @@ wheels/
 # Generated files
 and_xor.sv
 synth_out/
+verilator/
 
 # Vivado artifacts
 dfx_runtime.txt
 *.jou
 *.log
+cocotb/
