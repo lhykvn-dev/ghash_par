@@ -1,5 +1,5 @@
 # Bit-parallel, Block-parallel GHASH for AES-GCM
-Authentication is a potential performance bottleneck for AES-GCM due to the sequential structure between GHASH blocks, and the GF2 multiplication in each block. A block parallel method is proposed to break the sequential dependency between GHASH blocks, and a bit parallel method is proposed to speed up the GF2 multiplication. While both methods are independent, implementing both together yields a fully parallelized design of scalable XOR-AND operations.
+Authentication is a potential performance bottleneck for AES-GCM due to the sequential structure between GHASH blocks, and the GF2 multiplication in each block. A block parallel method is proposed to break the sequential dependency between GHASH blocks, and a bit parallel method is proposed to speed up the GF2 multiplication. While both methods are independent, implementing both together yields a fully parallelized design of scalable constant time XOR-AND operations.
 
 The bit parallel method is implemented in RTL and synthesized at 450 MHz for `xcku5p-ffvb676-2-e` Kintex Ultrascale+ FPGA, achieving 57.6 Gbps throughput, 2.22 ns latency and with a CLB LUT utilization of 7362 (3.39%). With block parallelism, throughput and utilization scale linearly, with minimal latency cost.
 
@@ -72,3 +72,4 @@ vivado -mode batch -source run_synth.tcl
 - AES-GCM spec: https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-38d.pdf
 - GCM validation: https://csrc.nist.gov/projects/cryptographic-algorithm-validation-program/cavp-testing-block-cipher-modes#GCMVS
 - AES-GCM block diagram: https://upload.wikimedia.org/wikipedia/commons/2/25/GCM-Galois_Counter_Mode_with_IV.svg
+
