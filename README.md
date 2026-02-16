@@ -57,19 +57,10 @@ Run Vivado Synthesis. Synthesis reports generated design in `synth_out`.
 ```
 vivado -mode batch -source run_synth.tcl
 ```
-
-
-## Use Cases
-- NSE replacing the MD5 with AES-GCM authentication tag: https://nsearchives.nseindia.com/web/sites/default/files/inline-files/TP_CUR_Trimmed_NNF_PROTOCOL_6.1.pdf
-    - Tag is inserted at the payload header, instead of appending after the payload, resulting in a potential latency bottleneck as the tag is calculated over the entire payload first.
-    - Further optimizations
-        - Consider static blocks as blocks that consist of only static order fields, and dynamic blocks as blocks that contain dynamic order fields.
-        - Static Blocks: `Xi.H^k` terms are precomputed and XOR'ed together with AAD and J0 blocks to generate a partial tag
-        - Dynamic Blocks: `Xi.H^k` terms are computed in parallel, and XOR'ed with the partial tag to generate the final tag
-
 ## Relevant Resources
 - AES-CTR spec: https://nvlpubs.nist.gov/nistpubs/legacy/sp/nistspecialpublication800-38a.pdf
 - AES-GCM spec: https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-38d.pdf
 - GCM validation: https://csrc.nist.gov/projects/cryptographic-algorithm-validation-program/cavp-testing-block-cipher-modes#GCMVS
 - AES-GCM block diagram: https://upload.wikimedia.org/wikipedia/commons/2/25/GCM-Galois_Counter_Mode_with_IV.svg
+
 
